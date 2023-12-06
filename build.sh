@@ -192,9 +192,9 @@ term() {
 
 trap term EXIT INT TERM
 
-export PI_GEN=${PI_GEN:-pi-gen}
-export PI_GEN_REPO=${PI_GEN_REPO:-https://github.com/RPi-Distro/pi-gen}
-export PI_GEN_RELEASE=${PI_GEN_RELEASE:-Raspberry Pi reference}
+export PI_GEN=${PI_GEN:-pi-gen-navio2}
+export PI_GEN_REPO=${PI_GEN_REPO:-https://github.com/IAS-PERCRO-LAB/pi-gen-navio2}
+export PI_GEN_RELEASE=${PI_GEN_RELEASE:-Raspberry Pi Navio2 bookworm}
 
 if [ -z "${IMG_NAME}" ]; then
 	echo "IMG_NAME not set" 1>&2
@@ -234,10 +234,10 @@ export PUBKEY_ONLY_SSH="${PUBKEY_ONLY_SSH:-0}"
 
 export LOCALE_DEFAULT="${LOCALE_DEFAULT:-en_GB.UTF-8}"
 
-export KEYBOARD_KEYMAP="${KEYBOARD_KEYMAP:-gb}"
-export KEYBOARD_LAYOUT="${KEYBOARD_LAYOUT:-English (UK)}"
+export KEYBOARD_KEYMAP="${KEYBOARD_KEYMAP:-us}"
+export KEYBOARD_LAYOUT="${KEYBOARD_LAYOUT:-English (US)}"
 
-export TIMEZONE_DEFAULT="${TIMEZONE_DEFAULT:-Europe/London}"
+export TIMEZONE_DEFAULT="${TIMEZONE_DEFAULT:-Europe/Rome}"
 
 export GIT_HASH=${GIT_HASH:-"$(git rev-parse HEAD)"}
 
