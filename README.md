@@ -204,6 +204,10 @@ The following environment variables are supported:
 
    Sets the default WLAN regulatory domain and unblocks WLAN interfaces. This should be a 2-letter ISO/IEC 3166 country Code, i.e. `GB`
 
+ * `WPA_ESSID` and `WPA_PASSWORD` (Default: unset)
+
+   If these are set, they are use to configure `wpa_supplicant.conf`, so that the raspberry pi can automatically connect to a wifi network on first boot.
+
  * `ENABLE_SSH` (Default: `0`)
 
    Setting to `1` will enable ssh server for remote log in. Note that if you are using a common password such as the defaults there is a high risk of attackers taking over you Raspberry Pi.

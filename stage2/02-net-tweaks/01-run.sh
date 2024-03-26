@@ -20,3 +20,9 @@ else
     echo 1 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-fe300000.mmcnr:wlan"
     echo 1 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-1001100000.mmc:wlan"
 fi
+
+if [ -v WPA_ESSID ] && [ -v WPA_PASSWORD ]; then
+on_chroot <<EOF
+wpa_passphrase "${WPA_ESSID}" "${WPA_PASSWORD}" >> "/etc/wpa_supplicant/wpa_supplicant.conf"
+EOF
+fi

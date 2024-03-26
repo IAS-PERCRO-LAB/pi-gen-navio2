@@ -323,7 +323,9 @@ fi
 mkdir -p "${WORK_DIR}"
 log "Begin ${BASE_DIR}"
 
-STAGE_LIST=${STAGE_LIST:-${BASE_DIR}/stage*}
+STAGE_LIST="stage0 stage1 stage2 stage3_navio"
+# # you can make all stages instead with
+# STAGE_LIST=${STAGE_LIST:-${BASE_DIR}/stage*}
 
 for STAGE_DIR in $STAGE_LIST; do
 	STAGE_DIR=$(realpath "${STAGE_DIR}")
