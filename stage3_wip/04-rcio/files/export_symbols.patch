@@ -1,0 +1,51 @@
+diff --git a/Makefile b/Makefile
+index 939b1d1..8a84304 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,7 +1,8 @@
+ obj-m += rcio_core.o 
+ obj-m += rcio_spi.o
+ rcio_spi-objs := src/rcio_spi.o
+-rcio_core-objs := src/rcio_core.o src/rcio_adc.o src/rcio_pwm.o src/rcio_rcin.o src/rcio_status.o src/rcio_safety.o src/rcio_gpio.o
++rcio_core-objs := src/rcio_core.o src/rcio_adc.o src/rcio_rcin.o src/rcio_status.o src/rcio_safety.o src/rcio_gpio.o
++# src/rcio_pwm.o
+ 
+ ccflags-y := -std=gnu99
+ 
+diff --git a/src/rcio_core.c b/src/rcio_core.c
+index d78e6f4..321cfb1 100644
+--- a/src/rcio_core.c
++++ b/src/rcio_core.c
+@@ -63,7 +63,7 @@ static int register_modify(struct rcio_state *state, u8 page, u8 offset, u16 cle
+     return register_set_byte(state, page, offset, value);
+ }
+ 
+-static struct rcio_state rcio_state;
++struct rcio_state rcio_state;
+ 
+ struct task_struct *task;
+ 
+diff --git a/src/rcio_spi.c b/src/rcio_spi.c
+index 0740545..f48763c 100644
+--- a/src/rcio_spi.c
++++ b/src/rcio_spi.c
+@@ -162,17 +162,16 @@ static int rcio_spi_probe(struct spi_device *spi)
+     return 0;
+ }
+ 
+-static int rcio_spi_remove(struct spi_device *spi)
++static void rcio_spi_remove(struct spi_device *spi)
+ {
+     int ret = rcio_remove(&st);
+ 
+     if (ret < 0) {
+         dev_err(&spi->dev, "rcio_remove=%d", ret);
+-        return ret;
++        return;
+     }
+ 
+     kfree(buffer);
+-    return ret;
+ }
+ 
+ static const struct spi_device_id rcio_id[] = {
